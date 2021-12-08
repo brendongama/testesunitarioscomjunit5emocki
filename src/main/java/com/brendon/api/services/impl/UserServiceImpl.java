@@ -1,4 +1,4 @@
-package com.brendon.api.services.imple;
+package com.brendon.api.services.impl;
 
 import java.util.Optional;
 
@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.brendon.api.domain.User;
 import com.brendon.api.repositories.UserRepository;
 import com.brendon.api.services.UserService;
+import com.brendon.api.services.exceptions.ObjectNotFoundException;
 
 @Service
 public class UserServiceImpl implements UserService{
@@ -18,7 +19,7 @@ public class UserServiceImpl implements UserService{
 	@Override
 	public User findById(Integer id) {
 		Optional<User> obj = repository.findById(id);
-		return obj.orElse(null);
+		return obj.orElseThrow(() -> new ObjectNotFoundException("Objeto não encontrado"));
 	}
 
 }
