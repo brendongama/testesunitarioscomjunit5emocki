@@ -52,4 +52,11 @@ public class UserServiceImpl implements UserService{
 		}
 	}
 
+	@Override
+	public void delete(Integer id) {
+		findById(id);
+		repository.deleteById(id);		
+		
+	}
+
 }
